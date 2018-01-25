@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Memo</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        header {
+            padding: 10px;
+            box-sizing: border-box;
+            width: 100%;
+            height: 50px;
+            background-color: aquamarine;
+        }
+        #save-btn {
+            border: solid 1px;
+            border-radius: 5px;            
+        }
+        #memo-area {
+            width: 100%;
+            height: calc(100% - 50px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="save-btn" type="button">Save</button>
+    </header>
+    <textarea name="" id="memo-area" cols="30" rows="100">
+        
+    </textarea>
+
+    <script>
+        let memoArea = document.getElementById('memo-area')
+        memoArea.value = localStorage.getItem('text')
+
+        function save() {
+            let memoArea = document.getElementById('memo-area')
+            localStorage.setItem('text', memoArea.value)
+            console.log(localStorage.getItem('text'))
+        }
+
+        memoArea.oninput = function() {
+            save()
+        }
+        
+        let saveBtn = document.getElementById('save-btn')
+        saveBtn.onclick = function() {
+            save()
+        }
+    </script>
+</body>
+</html>
